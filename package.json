@@ -1,0 +1,41 @@
+{
+  "name": "battleship",
+  "version": "0.0.0",
+  "description": "Node.js Battleship Game",
+  "keywords": [
+    "battleship"
+  ],
+  "author": "Akash Krishnan <ak@aakay.net>",
+  "license": "MIT",
+  "main": "src/index.js",
+  "scripts": {
+    "build": "webpack --config=webpack/prod.js",
+    "electron": "electron src/index.js",
+    "server": "node src/index.js",
+    "terminal": "node src/index.js terminal",
+    "start": "npm run terminal"
+  },
+  "dependencies": {
+    "chalk": "^2.4.2",
+    "compression": "^1.7.4",
+    "express": "^4.17.1",
+    "helmet": "^3.18.0",
+    "socket.io": "^2.2.0",
+    "socket.io-client": "^2.2.0",
+    "uuid": "^3.3.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.5.0",
+    "@babel/preset-env": "^7.5.0",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.6",
+    "clean-webpack-plugin": "^3.0.0",
+    "electron": "^5.0.6",
+    "html-webpack-plugin": "^3.2.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "webpack": "^4.35.2",
+    "webpack-cli": "^3.3.5",
+    "webpack-dev-middleware": "^3.7.0"
+  }
+}
