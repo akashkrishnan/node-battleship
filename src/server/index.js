@@ -55,6 +55,21 @@ function socketHandler( io ) {
 
     p.on( 'DEFAULTS', cb => cb( null, DEFAULTS ) );
 
+    p.on( 'match.list', ( cb ) => {
+
+      const _matches = Object.entries( matches ).map( ( [ match_id, match ] ) => {
+
+        return {
+          id: match_id,
+          running: match.running,
+        };
+
+      } );
+
+      cb( null, _matches );
+
+    } );
+
     p.on( 'match.create', ( size, ships, cb ) => {
 
       size = size || DEFAULTS.SIZE;

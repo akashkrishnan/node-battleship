@@ -106,14 +106,17 @@ function render( board ) {
 
         const bgColor = c.status > 0 ? 'bgRed' : 'bgBlack';
 
-        t = chalk.white[ bgColor ]( ` ${c.shipId} ` );
+        // t = chalk.white[ bgColor ]( ` ${c.shipId} ` );
+        t = ` ${c.shipId} `;
 
       }
       else if ( c.status > 0 ) {
-        t = chalk.white.bgRed( ' X ' );
+        // t = chalk.white.bgRed( ' X ' );
+        t = ' X ';
       }
       else if ( c.status < 0 ) {
-        t = chalk.black.bgWhite( ' - ' );
+        // t = chalk.black.bgWhite( ' - ' );
+        t = ' - ';
       }
 
       return t;
