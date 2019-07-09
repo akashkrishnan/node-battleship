@@ -12,6 +12,7 @@ module.exports = class Match extends events.EventEmitter {
     this._size = size;
     this._ships = ships;
     this._players = players;
+    this._observers = [];
     this._history = [];
   }
 
@@ -23,11 +24,49 @@ module.exports = class Match extends events.EventEmitter {
     return this._players;
   }
 
+  get observers() {
+    return this._observers;
+  }
+
   get history() {
     return this._history;
   }
 
-  async start() {
+  get boards() {
+    return this._boards;
+  }
+
+  async addPlayer( player ) {
+
+    if ( this._players.length >= 2 ) {
+      throw new Error( 'Match is full.' );
+    }
+
+    if ( this._players[ 0 ] === player ) {
+      return new Error( 'Already observing match.' );
+    }
+
+    this._players.push( player );
+
+    this._start().catch( err => {
+      this.emit( 'error', err );
+    } );
+
+  }
+
+  async addObserver( observer ) {
+
+    // TODO: MAKE SURE OBSERVER NOT IN PLAYERS LIST
+
+    if ( this._observers[ 0 ] === observer ) {
+      return new Error( 'Already joined match.' );
+    }
+
+    this._observers.push( observer );
+
+  }
+
+  async _start() {
 
     if ( this._running ) {
       throw Error( 'Match is already in progress.' );
@@ -36,7 +75,7 @@ module.exports = class Match extends events.EventEmitter {
     this._running = true;
 
     // Get fleet positions and initialize boards
-    const boards = await Promise.all(
+    const boards = this._boards = await Promise.all(
       this._players.map( async player => {
 
         const fleet = __generateFleet( this._ships );

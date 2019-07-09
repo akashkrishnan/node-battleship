@@ -11,9 +11,9 @@
   "scripts": {
     "build": "webpack --config=webpack/prod.js",
     "electron": "electron src/index.js",
-    "server": "node src/index.js",
+    "server": "node src/index.js server",
     "terminal": "node src/index.js terminal",
-    "start": "npm run terminal"
+    "start": "node src/index.js"
   },
   "dependencies": {
     "chalk": "^2.4.2",

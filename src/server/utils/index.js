@@ -6,6 +6,7 @@ module.exports = {
   inRange,
   randomInt,
   randomBool,
+  safeFn,
 };
 
 function clone( a ) {
@@ -44,4 +45,8 @@ function randomInt( min, max ) {
 
 function randomBool() {
   return randomInt( 0, 2 );
+}
+
+function safeFn( fn ) {
+  return fn || ( () => 0 );
 }

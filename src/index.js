@@ -18,8 +18,10 @@ async function main() {
 
   port = port || process.env.PORT || DEFAULTS.PORT;
 
-  const server = new Server();
-  await server.listen( port );
+  if ( process.argv[ 2 ] !== 'terminal' ) {
+    const server = new Server();
+    await server.listen( port );
+  }
 
   if ( electron.app ) {
     await startElectron( port );

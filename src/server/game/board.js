@@ -25,7 +25,7 @@ module.exports = class Board {
       const v = Math.abs( p[ 0 ][ 0 ] - p[ 1 ][ 0 ] ) === ship.size - 1;
 
       // Ensure either horizontal or vertical of correct size
-      if ( h === v ) {
+      if ( ship.size !== 1 && h === v ) {
         throw new FleetPositionsError( 'Invalid ship orientation or size.' );
       }
 
